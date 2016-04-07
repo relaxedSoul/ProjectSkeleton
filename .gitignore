@@ -1,8 +1,11 @@
 # Built application files
 *.apk
 *.ap_
+<<<<<<< HEAD
 *.iml
 .idea
+=======
+>>>>>>> 8258341071ab90b489abcf6baa9788e6f8db6d2f
 
 # Files for the Dalvik VM
 *.dex
@@ -32,5 +35,8 @@ proguard/
 
 # Android Studio captures folder
 captures/
+<<<<<<< HEAD
 Status API Training Shop Blog About
 © 2016 GitHub, Inc. Terms Privacy S
+=======
+>>>>>>> 8258341071ab90b489abcf6baa9788e6f8db6d2f
