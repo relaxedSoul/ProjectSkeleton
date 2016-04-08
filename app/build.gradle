@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
@@ -11,16 +12,55 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
+    testOptions {
+        unitTests.all {
+            systemProperty 'robolectric.logging.enabled', 'true'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
+    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'org.robolectric:robolectric:3.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.firebase:firebase-client-android:2.5.1+'
+    compile 'com.firebaseui:firebase-ui:0.3.1'
+    compile 'com.firebase:firebase-token-generator:2.0.0'
+    compile 'com.google.android.gms:play-services-auth:8.3.0'
+    compile 'net.danlew:android.joda:2.9.2'
+    compile 'com.annimon:stream:1.0.2'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.googlecode.libphonenumber:libphonenumber:5.5'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.picasso:picasso:2.5.0'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
 }
