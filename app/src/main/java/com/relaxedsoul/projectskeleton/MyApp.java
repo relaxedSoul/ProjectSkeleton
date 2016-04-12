@@ -8,9 +8,6 @@ import com.relaxedsoul.projectskeleton.util.PrefUtils;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
-/**
- * Created by yurchenko on 23.03.2016.
- */
 public class MyApp extends Application {
 
     private static MyApp sInstance;

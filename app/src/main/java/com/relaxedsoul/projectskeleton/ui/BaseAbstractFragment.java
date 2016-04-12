@@ -21,15 +21,19 @@ import de.greenrobot.event.EventBus;
 @FragmentDef
 public class BaseAbstractFragment extends Fragment {
 
-    private FragmentDef fragmentDef;
-
     protected final static String EXTRA_STATE = "EXTRA_STATE";
     protected final static String EXTRA_ID = "EXTRA_ID";
+    private FragmentDef fragmentDef;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragmentDef = getClass().getAnnotation(FragmentDef.class);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        fragmentDef = getClass().getAnnotation(FragmentDef.class);
         return fragmentDef != null && fragmentDef.resource() != 0
                 ? inflater.inflate(fragmentDef.resource(), container, false)
                 : super.onCreateView(inflater, container, savedInstanceState);
