@@ -19,9 +19,10 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (sInstance == null) sInstance = this;
         JodaTimeAndroid.init(this);
         PrefUtils.init(this);
-        if (sInstance == null) sInstance = this;
+
     }
 
     @SuppressWarnings("unused")

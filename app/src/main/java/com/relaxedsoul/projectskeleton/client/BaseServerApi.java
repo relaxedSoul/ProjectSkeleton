@@ -65,7 +65,7 @@ public abstract class BaseServerApi {
      * @return Base response json, containing response code, response message and data, if any was returned
      */
     protected <T extends BaseJson> BaseResponseJson<T> performRequest(RequestParams params,
-                                                                      Class<T> containerClazz, Type type) {
+                                                                      Class<T> containerClazz, Type type, boolean isMap) {
         try {
             Response response = call(params);
             if (response == null) {
@@ -76,7 +76,7 @@ public abstract class BaseServerApi {
             if (!response.isSuccessful()) return ResponseInfo.onHttpFailure();
             String body = response.body().string();
             LogHelper.i(TAG, "response body: " + body);
-            return ResponseInfo.onSuccess(containerClazz, body, type, true);
+            return ResponseInfo.onSuccess(containerClazz, body, type, isMap);
         } catch (IOException e) {
             LogHelper.e(TAG, "Error on network. IO.");
             LogHelper.printStackTrace(e);
@@ -86,7 +86,7 @@ public abstract class BaseServerApi {
 
     protected <T extends BaseJson> BaseResponseJson<T> performRequest(RequestParams params,
                                                                       Class<T> containerClazz) {
-        return performRequest(params, containerClazz, null);
+        return performRequest(params, containerClazz, null, false);
     }
 
     private Response call(RequestParams params) {
