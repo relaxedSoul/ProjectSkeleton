@@ -3,6 +3,7 @@ package com.relaxedsoul.projectskeleton.client;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class BaseResponseJson<T extends BaseJson> {
@@ -19,7 +20,7 @@ public class BaseResponseJson<T extends BaseJson> {
     private String message = DEFAULT_MESSAGE;
     private String error = DEFAULT_MESSAGE;
     private T result;
-    private HashMap<String, T> map;
+    private Map<String, T> map;
     private List<T> list;
 
     public BaseResponseJson() {
@@ -60,11 +61,11 @@ public class BaseResponseJson<T extends BaseJson> {
         this.error = message;
     }
 
-    public final HashMap<String, T> getMap() {
+    public final Map<String, T> getMap() {
         return map;
     }
 
-    public final BaseResponseJson<T> setMap(HashMap<String, T> map) {
+    public final BaseResponseJson<T> setMap(Map<String, T> map) {
         this.map = map == null ? new HashMap<>() : new HashMap<>(map);
         return this;
     }

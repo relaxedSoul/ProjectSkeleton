@@ -5,14 +5,16 @@ import com.google.gson.JsonSyntaxException;
 import com.relaxedsoul.projectskeleton.util.LogHelper;
 
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
 
-public final class ResponseInfo<T extends BaseJson> {
+public class ResponseInfo<T extends BaseJson> {
 
     private static final String TAG = "ResponseInfo";
     private final Class<? extends T> contentClazz;
     private BaseResponseJson<T> responseJson;
 
-    private ResponseInfo(Class<T> contentClazz, String body, Type type, boolean isMap) {
+    protected ResponseInfo(Class<T> contentClazz, String body, Type type, boolean isMap) {
         this.contentClazz = contentClazz;
         if (type == null) parseObjectJson(body);
         else if (isMap) parseMapFromJson(body, type);
@@ -45,17 +47,17 @@ public final class ResponseInfo<T extends BaseJson> {
         return new BaseResponseJson<>(BaseResponseJson.RESPONSE_JSON_PARSE_FAILURE, "Invalid json");
     }
 
-    protected void parseObjectJson(String jsonString) {
+    private void parseObjectJson(String body) {
         try {
-            responseJson = onSuccess().setResult(new Gson().fromJson(jsonString, contentClazz));
+            responseJson = onSuccess().setResult(getObjectFromJson(body));
         } catch (IllegalStateException | JsonSyntaxException e) {
             responseJson = onParsingResponseFailure();
         }
     }
 
-    protected void parseMapFromJson(String body, Type mapType) {
+    private void parseMapFromJson(String body, Type mapType) {
         try {
-            responseJson = onSuccess().setMap(new Gson().fromJson(body, mapType));
+            responseJson = onSuccess().setMap(getMapFromJson(body, mapType));
         } catch (IllegalStateException | JsonSyntaxException e) {
             LogHelper.e(TAG, "Wrong json body:\n" + body);
             LogHelper.printStackTrace(e);
@@ -63,13 +65,26 @@ public final class ResponseInfo<T extends BaseJson> {
         }
     }
 
-    protected void parseListFromJson(String body, Type listType) {
+    private void parseListFromJson(String body, Type listType) {
         try {
-            responseJson = onSuccess().setList(new Gson().fromJson(body, listType));
+            responseJson = onSuccess().setList(getListFromJson(body, listType));
         } catch (IllegalStateException | JsonSyntaxException e) {
             LogHelper.e(TAG, "Wrong json body:\n" + body);
             LogHelper.printStackTrace(e);
             responseJson = onParsingResponseFailure();
         }
     }
+
+    protected T getObjectFromJson(String body) throws IllegalStateException, JsonSyntaxException {
+        return new Gson().fromJson(body, contentClazz);
+    }
+
+    protected Map<String, T> getMapFromJson(String body, Type mapType) throws IllegalStateException, JsonSyntaxException {
+        return new Gson().fromJson(body, mapType);
+    }
+
+    protected List<T> getListFromJson(String body, Type listType) throws IllegalStateException, JsonSyntaxException {
+        return new Gson().fromJson(body, listType);
+    }
+
 }

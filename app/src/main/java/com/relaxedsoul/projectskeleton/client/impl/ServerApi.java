@@ -18,7 +18,7 @@ import com.squareup.okhttp.OkHttpClient;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class ServerApi extends BaseServerApi {
+public class ServerApi extends BaseServerApi<ResponseInfoImpl> {
 
     private static final long CONNECTION_TIMEOUT = 10;
     private static final long READ_TIMEOUT = 40;

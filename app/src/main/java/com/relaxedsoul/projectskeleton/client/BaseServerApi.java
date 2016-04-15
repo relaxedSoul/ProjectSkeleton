@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public abstract class BaseServerApi {
+public abstract class BaseServerApi<V extends ResponseInfo> {
 
     protected static final String TAG = "BaseServerApi";
     private URL mStaticUrl;
@@ -70,17 +70,17 @@ public abstract class BaseServerApi {
             Response response = call(params);
             if (response == null) {
                 LogHelper.e(TAG, "response = null");
-                return ResponseInfo.onNetworkFailure();
+                return V.onNetworkFailure();
             }
             LogHelper.i(TAG, "response code: " + response.code() + ", msg: " + response.message());
-            if (!response.isSuccessful()) return ResponseInfo.onHttpFailure();
+            if (!response.isSuccessful()) return V.onHttpFailure();
             String body = response.body().string();
             LogHelper.i(TAG, "response body: " + body);
-            return ResponseInfo.onSuccess(containerClazz, body, type, isMap);
+            return V.onSuccess(containerClazz, body, type, isMap);
         } catch (IOException e) {
             LogHelper.e(TAG, "Error on network. IO.");
             LogHelper.printStackTrace(e);
-            return ResponseInfo.onNetworkFailure();
+            return V.onNetworkFailure();
         }
     }
 
