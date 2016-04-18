@@ -15,6 +15,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Inherited
 public @interface FragmentDef {
+
+    /** in */
     int resource() default 0;
 
     boolean busEnabled() default false;

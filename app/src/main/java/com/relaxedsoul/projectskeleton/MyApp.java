@@ -8,6 +8,9 @@ import com.relaxedsoul.projectskeleton.util.PrefUtils;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+/**
+ * Base application
+ */
 public class MyApp extends Application {
 
     private static MyApp sInstance;

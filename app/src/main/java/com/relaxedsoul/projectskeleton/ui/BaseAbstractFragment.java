@@ -14,9 +14,20 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
- * Base fragment class with basic methods
+ * Base fragment implementation. Use this class for auto apply basic functionality
  * <p>
- * Created by RelaxedSoul on 27.07.2015.
+ * Use annotation {@link FragmentDef} for configuring fragment basic workaround.
+ * Class is not final and can be modified in project.
+ * <pre><code>
+ *     {@literal @}FragmentDef(resource = R.layout.fragment_main, knifeEnabled = true,
+ *     busEnabled = true)
+ *     public class MainFragment extends BaseAbstractFragment {
+ *         ...
+ *     }
+ * </code></pre>
+ * </p>
+ * @see FragmentDef
+ *
  */
 @FragmentDef
 public class BaseAbstractFragment extends Fragment {
