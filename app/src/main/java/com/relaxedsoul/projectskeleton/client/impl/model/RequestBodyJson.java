@@ -3,7 +3,7 @@ package com.relaxedsoul.projectskeleton.client.impl.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by yurchenko on 08.04.2016.
+ * Created by RelaxedSoul on 08.04.2016.
  */
 public class RequestBodyJson {
 

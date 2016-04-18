@@ -1,7 +1,7 @@
 package com.relaxedsoul.projectskeleton.client;
 
 /**
- * Created by yurchenko on 28.03.2016.
+ * Created by RelaxedSoul on 28.03.2016.
  */
 public enum Param {
     AUTH("auth");

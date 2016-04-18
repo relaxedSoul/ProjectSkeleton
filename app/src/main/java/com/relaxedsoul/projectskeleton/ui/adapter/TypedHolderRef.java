@@ -1,5 +1,4 @@
-package com.relaxedsoul.projectskeleton.annotation;
-
+package com.relaxedsoul.projectskeleton.ui.adapter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -8,16 +7,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by RelaxedSoul on 17.12.2015.
+ * Created by yurchenko on 18.04.2016.
  */
-
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Inherited
-public @interface FragmentDef {
+public @interface TypedHolderRef {
     int resource() default 0;
-
-    boolean busEnabled() default false;
-
-    boolean knifeEnabled() default false;
 }

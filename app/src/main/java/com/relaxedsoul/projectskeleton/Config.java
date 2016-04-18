@@ -3,7 +3,7 @@ package com.relaxedsoul.projectskeleton;
 import android.os.Build;
 
 /**
- * Created by yurchenko on 23.03.2016.
+ * Created by RelaxedSoul on 23.03.2016.
  */
 public abstract class Config {
 

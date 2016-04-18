@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yurchenko on 28.03.2016.
+ * Created by RelaxedSoul on 28.03.2016.
  */
 public final class Path {
 

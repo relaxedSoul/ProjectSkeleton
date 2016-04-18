@@ -5,7 +5,7 @@ import android.util.Log;
 import com.relaxedsoul.projectskeleton.Config;
 
 /**
- * Created by yurchenko on 23.03.2016.
+ * Created by RelaxedSoul on 23.03.2016.
  */
 public abstract class LogHelper {
     public static void i(String tag, String message) {

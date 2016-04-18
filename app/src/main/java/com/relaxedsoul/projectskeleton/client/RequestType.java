@@ -1,7 +1,7 @@
 package com.relaxedsoul.projectskeleton.client;
 
 /**
- * Created by yurchenko on 03.04.2016.
+ * Created by RelaxedSoul on 03.04.2016.
  */
 public enum RequestType {
     GET("GET"), POST("POST"), PATCH("PATCH"), DELETE("DELETE");

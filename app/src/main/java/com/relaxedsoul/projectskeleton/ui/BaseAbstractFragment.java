@@ -16,7 +16,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Base fragment class with basic methods
  * <p>
- * Created by yurchenko on 27.07.2015.
+ * Created by RelaxedSoul on 27.07.2015.
  */
 @FragmentDef
 public class BaseAbstractFragment extends Fragment {

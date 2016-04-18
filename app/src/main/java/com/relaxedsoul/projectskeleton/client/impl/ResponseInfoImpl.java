@@ -6,7 +6,7 @@ import com.relaxedsoul.projectskeleton.client.ResponseInfo;
 import java.lang.reflect.Type;
 
 /**
- * Created by yurchenko on 15.04.2016.
+ * Created by RelaxedSoul on 15.04.2016.
  */
 public class ResponseInfoImpl<T extends BaseJson> extends ResponseInfo<T> {
     private ResponseInfoImpl(Class<T> contentClazz, String body, Type type, boolean isMap) {
