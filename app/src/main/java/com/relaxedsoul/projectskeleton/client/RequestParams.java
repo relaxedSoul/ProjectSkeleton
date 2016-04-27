@@ -38,16 +38,18 @@ public final class RequestParams {
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
             sb.append(first ? urlEncoded ? "" : "?" : "&").append(entry.getKey()).append("=");
-            if (urlEncoded) {
-                try {
-                    sb.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
-                    sb.append(entry.getValue());
-                }
-            } else sb.append(entry.getValue());
+            try {
+                sb.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                sb.append(entry.getValue());
+            }
             first = false;
         }
         return sb.toString();
+    }
+
+    public RequestBody buildRequestBodyFromParams() {
+        return RequestBody.create(mediaType, buildParams(true));
     }
 
     public RequestBody getBody() {
@@ -56,6 +58,10 @@ public final class RequestParams {
 
     public String getBodyString() {
         return body;
+    }
+
+    public MediaType getMediaType() {
+        return mediaType;
     }
 
     public static class Builder {
@@ -67,7 +73,7 @@ public final class RequestParams {
 
         public Builder() {
             params = new HashMap<>();
-            mediaType = MediaType.parse("application/json");
+            mediaType = MediaType.parse("application/x-www-form-urlencoded");
             type = RequestType.GET;
         }
 

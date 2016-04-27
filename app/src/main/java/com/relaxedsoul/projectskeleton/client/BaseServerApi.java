@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.relaxedsoul.projectskeleton.util.LogHelper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
@@ -95,13 +96,13 @@ public abstract class BaseServerApi<V extends ResponseInfo> {
                 + "\n" + params.getBodyString());
         Request.Builder builder = new Request.Builder()
                 .url((mStaticUrl == null ? params.getPath().build()
-                        : mStaticUrl) + params.buildParams(false));
+                        : mStaticUrl + ""));
         switch (params.getType()) {
             case POST:
-                builder.post(params.getBody());
+                builder.post(RequestBody.create(params.getMediaType(), params.buildParams(true)));
                 break;
             case PATCH:
-                builder.patch(params.getBody());
+                builder.patch(RequestBody.create(params.getMediaType(), params.buildParams(true)));
                 break;
             case DELETE:
                 builder.delete();
